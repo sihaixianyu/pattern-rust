@@ -5,4 +5,12 @@ pub trait Button {
 
 pub trait Dialog {
     fn create_button(&self) -> Box<dyn Button>;
+
+    fn render(&self) {
+        self.create_button().render();
+    }
+
+    fn refresh(&self) {
+        println!("Dialog refresh!");
+    }
 }
