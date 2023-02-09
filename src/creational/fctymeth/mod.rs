@@ -27,7 +27,7 @@ mod tests {
     use super::get_dialog;
 
     #[test]
-    fn test_get_dialog() {
+    fn test_case1() {
         let dialog = get_dialog();
         dialog.render();
         dialog.refresh();
