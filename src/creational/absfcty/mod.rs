@@ -5,8 +5,12 @@ pub mod windows_gui;
 
 #[cfg(test)]
 mod tests {
-    use super::{client, unix_gui::{UnixFactory, UnixFactoryDynamic}, windows_gui::{WindowsFactory, WindowsFactoryDynamic}, gui::GuiFactoryDynamic};
-
+    use super::{
+        client,
+        gui::GuiFactoryDynamic,
+        unix_gui::{UnixFactory, UnixFactoryDynamic},
+        windows_gui::{WindowsFactory, WindowsFactoryDynamic},
+    };
 
     #[test]
     fn test_static_dispatch() {
