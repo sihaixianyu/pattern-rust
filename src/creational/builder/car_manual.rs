@@ -1,28 +1,20 @@
-use super::{
-    builder::Builder,
-    comp::{CarType, Engine, GPSNavigator, GearType},
-};
+use super::{comp::{CarType, Engine, GPSNavigator, GearType}, builder::Builder};
 
-pub const DEFAULT_FUEL: f64 = 5f64;
-
-#[derive(Debug)]
-pub struct Car {
+pub struct Manual {
     car_type: CarType,
     gear_type: GearType,
-    seat_num: u16,
     engine: Engine,
+    seat_num: u16,
     gps_navigator: Option<GPSNavigator>,
-    fuel: f64,
 }
 
-impl Car {
+impl Manual {
     pub fn new(
         car_type: CarType,
         gear_type: GearType,
         seat_num: u16,
         engine: Engine,
         gps_navigator: Option<GPSNavigator>,
-        fuel: f64,
     ) -> Self {
         Self {
             car_type,
@@ -30,39 +22,41 @@ impl Car {
             seat_num,
             engine,
             gps_navigator,
-            fuel,
         }
     }
 }
 
-impl std::fmt::Display for Car {
+impl std::fmt::Display for Manual {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        writeln!(f, "type of car: {:?}", self.car_type)?;
+        writeln!(f, "nums of set: {:?}", self.seat_num)?;
         writeln!(
             f,
-            "{:?}{:?}{:?}{:?}{:?}{:?}",
-            self.car_type,
-            self.gear_type,
-            self.seat_num,
-            self.engine,
-            self.gps_navigator,
-            self.fuel
+            "Engine: volume - {}; mileage - {}",
+            self.engine.volume, self.engine.mileage
         )?;
+        writeln!(f, "gear type: {:?}", self.gear_type)?;
+
+        match self.gps_navigator {
+            Some(_) => writeln!(f, "gps navigator: functional")?,
+            None => writeln!(f, "gps navigator: n/a")?,
+        }
 
         Ok(())
     }
 }
 
 #[derive(Default)]
-pub struct CarBuilder {
+pub struct ManualBuilder {
     car_type: Option<CarType>,
     gear_type: Option<GearType>,
-    seat_num: Option<u16>,
     engine: Option<Engine>,
+    seat_num: Option<u16>,
     gps_navigator: Option<GPSNavigator>,
 }
 
-impl Builder for CarBuilder {
-    type OutputType = Car;
+impl Builder for ManualBuilder {
+    type OutputType = Manual;
 
     fn set_car_type(&mut self, car_type: CarType) {
         self.car_type = Some(car_type);
@@ -85,13 +79,12 @@ impl Builder for CarBuilder {
     }
 
     fn build(self) -> Self::OutputType {
-        Car::new(
+        Manual::new(
             self.car_type.expect("please set a car type"),
             self.gear_type.expect("please set a gear type"),
             self.seat_num.expect("please set a seat number"),
             self.engine.expect("please set a engine type"),
             self.gps_navigator,
-            DEFAULT_FUEL,
         )
     }
 }

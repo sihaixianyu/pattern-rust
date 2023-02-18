@@ -1,14 +1,16 @@
+#[derive(Debug)]
 pub enum CarType {
     CityCar,
     SportsCar,
 }
 
+#[derive(Debug)]
 pub enum GearType {
     Manual,
     Automatic,
-    SemiAutomatic,
 }
 
+#[derive(Debug)]
 pub struct Engine {
     pub volume: f64,
     pub mileage: f64,
@@ -42,12 +44,15 @@ impl Engine {
     }
 }
 
+#[derive(Debug)]
 pub struct GPSNavigator {
     pub route: String,
 }
 
 impl GPSNavigator {
-    pub fn new(route: String) -> GPSNavigator {
-        Self { route }
+    pub fn new() -> GPSNavigator {
+        Self {
+            route: "221b, Baker Street, London  to Scotland Yard, 8-10 Broadway, London".to_owned(),
+        }
     }
 }
