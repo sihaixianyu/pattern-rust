@@ -6,7 +6,7 @@ pub mod director;
 
 #[cfg(test)]
 mod tests {
-    use crate::creational::builder::car_manual::ManualBuilder;
+    use crate::creation::builder::car_manual::ManualBuilder;
 
     use super::{builder::Builder, car::CarBuilder, director::Director};
 

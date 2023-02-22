@@ -1,4 +1,4 @@
-pub mod creational;
+pub mod creation;
 
 #[cfg(test)]
 mod tests {
