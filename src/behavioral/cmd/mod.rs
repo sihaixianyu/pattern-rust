@@ -48,15 +48,22 @@ impl Invoker {
 
 #[cfg(test)]
 pub mod tests {
-    use super::{cmd::{SimpleCommand, ComplexCommand}, Invoker, Receiver};
+    use super::{
+        cmd::{ComplexCommand, SimpleCommand},
+        Invoker, Receiver,
+    };
 
     #[test]
     fn test_cmd() {
         let mut invoker = Invoker::default();
         let receiver: Receiver = Receiver::default();
 
-        let simple_cmd= SimpleCommand::new("Say Hi!".into());
-        let complex_cmd = ComplexCommand::new(Box::new(receiver), "Send email".into(), "Save report".into());
+        let simple_cmd = SimpleCommand::new("Say Hi!".into());
+        let complex_cmd = ComplexCommand::new(
+            Box::new(receiver),
+            "Send email".into(),
+            "Save report".into(),
+        );
 
         invoker.set_on_start(Box::new(simple_cmd));
         invoker.set_on_finish(Box::new(complex_cmd));
