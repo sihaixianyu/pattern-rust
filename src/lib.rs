@@ -5,7 +5,7 @@ pub mod structural;
 #[cfg(test)]
 mod tests {
     #[test]
-    fn test() {
-        println!("Hello World!")
+    fn test_case1() {
+        println!("Hello");
     }
 }
