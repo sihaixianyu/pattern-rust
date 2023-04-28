@@ -6,3 +6,4 @@ pub mod memento;
 pub mod observer;
 pub mod state;
 pub mod strategy;
+pub mod template;

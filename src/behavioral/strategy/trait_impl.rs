@@ -31,14 +31,3 @@ impl<T: RouteStrategy> Navigator<T> {
         self.route_strategy.build_route(from, to);
     }
 }
-
-#[test]
-fn test_strategy() {
-    let navigator = Navigator::new(WalkingStrategy);
-    navigator.route("Home", "Club");
-    navigator.route("Club", "Work");
-
-    let navigator = Navigator::new(PublicTransportStrategy);
-    navigator.route("Home", "Club");
-    navigator.route("Club", "Work");
-}

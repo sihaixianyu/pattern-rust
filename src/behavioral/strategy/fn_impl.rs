@@ -21,18 +21,3 @@ impl Navigator {
         (self.route_strategy)(from, to);
     }
 }
-
-#[test]
-fn test_strategy() {
-    let navigator = Navigator::new(walking_strategy);
-    navigator.route("Home", "Club");
-    navigator.route("Club", "Work");
-
-    let navigator = Navigator::new(public_transport_strategy);
-    navigator.route("Home", "Club");
-    navigator.route("Club", "Work");
-
-    let navigator = Navigator::new(|from, to| println!("Specific route from {} to {}", from, to));
-    navigator.route("Home", "Club");
-    navigator.route("Club", "Work");
-}
