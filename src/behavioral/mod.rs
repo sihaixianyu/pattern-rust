@@ -7,3 +7,4 @@ pub mod observer;
 pub mod state;
 pub mod strategy;
 pub mod template;
+pub mod visitor;

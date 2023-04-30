@@ -1,4 +1,4 @@
-trait TemplateMethod {
+pub trait TemplateMethod {
     fn template_method(&self) {
         self.base_operation1();
         self.required_operations1();
@@ -28,7 +28,7 @@ trait TemplateMethod {
     fn required_operations2(&self);
 }
 
-struct ConcreteStruct1;
+pub struct ConcreteStruct1;
 
 impl TemplateMethod for ConcreteStruct1 {
     fn required_operations1(&self) {
@@ -40,7 +40,7 @@ impl TemplateMethod for ConcreteStruct1 {
     }
 }
 
-struct ConcreteStruct2;
+pub struct ConcreteStruct2;
 
 impl TemplateMethod for ConcreteStruct2 {
     fn required_operations1(&self) {
